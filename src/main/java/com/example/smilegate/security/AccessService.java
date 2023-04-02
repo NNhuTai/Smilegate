@@ -35,7 +35,7 @@ public class AccessService {
 
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(e.getName());
-        userAccount.setPassword(passwordEncoder.encode(e.getDestination()));
+        userAccount.setPassword(passwordEncoder.encode(e.getPass()));
         userAccount.setActive(true);
         userAccount.setUserRoles(roleSet);
         userAccountRepository.save(userAccount);

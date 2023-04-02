@@ -20,7 +20,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Long CustomerId;
+    private Long customerId;
     private Boolean ordered;
     private Boolean pay;
     private Long total;

@@ -15,6 +15,6 @@ public class GameProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Long CategoryId;
+    private Long categoryId;
     private Long price;
 }

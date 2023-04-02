@@ -19,7 +19,7 @@ public class CustomerController {
     public Customer getCustomer(@PathVariable Long id) {
         return customerService.getCustomer(id);
     }
-    @PostMapping("/create")
+    @PostMapping("/create/{name}")
     public void createCustomer(@PathVariable String name) {
         customerService.createCustomer(name);
     }

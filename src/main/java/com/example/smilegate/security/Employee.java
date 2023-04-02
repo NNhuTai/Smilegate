@@ -12,12 +12,12 @@ import java.util.List;
 public class Employee implements Serializable {
 
     private String name;
-    private String destination;
+    private String pass;
     transient int age;
     private List<String> role;
-    public Employee(String n, String d, int a) {
+    public Employee(String n, String p, int a) {
         name = n;
-        destination = d;
+        pass = p;
         age = a;
     }
 }
