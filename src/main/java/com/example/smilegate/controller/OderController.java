@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/order")
 public class OderController {
-    @Autowired
-    private OrderService orderService;
+    private final OrderService orderService;
+
+    public OderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @PostMapping("/create")
     public void createOder(@RequestBody OderRequest oderRequest){
