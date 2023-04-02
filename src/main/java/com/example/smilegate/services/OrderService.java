@@ -3,15 +3,12 @@ package com.example.smilegate.services;
 import com.example.smilegate.model.GameProduct;
 import com.example.smilegate.model.OderRequest;
 import com.example.smilegate.model.Order;
-import com.example.smilegate.repos.CustomerRepo;
 import com.example.smilegate.repos.GameProductRepo;
 import com.example.smilegate.repos.OrderRepo;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -21,14 +18,15 @@ import java.util.concurrent.atomic.AtomicReference;
 @Service
 public class OrderService {
 
-    @Autowired
-    private OrderRepo orderRepo;
+    private final OrderRepo orderRepo;
 
-    @Autowired
-    private CustomerRepo customerRepo;
 
-    @Autowired
-    private GameProductRepo gameProductRepo;
+    private final GameProductRepo gameProductRepo;
+
+    public OrderService(OrderRepo orderRepo, GameProductRepo gameProductRepo) {
+        this.orderRepo = orderRepo;
+        this.gameProductRepo = gameProductRepo;
+    }
 
     @Transactional
     public void createOrder(OderRequest request){

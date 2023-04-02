@@ -2,7 +2,6 @@ package com.example.smilegate.services;
 
 import com.example.smilegate.model.Customer;
 import com.example.smilegate.repos.CustomerRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,8 +9,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CustomerService {
-    @Autowired
-    private CustomerRepo customerRepo;
+    private final CustomerRepo customerRepo;
+
+    public CustomerService(CustomerRepo customerRepo) {
+        this.customerRepo = customerRepo;
+    }
 
     public Customer getCustomer(Long id) {
         return customerRepo.findById(id).orElse(null);
