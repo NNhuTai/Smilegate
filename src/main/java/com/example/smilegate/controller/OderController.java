@@ -2,22 +2,18 @@ package com.example.smilegate.controller;
 
 import com.example.smilegate.model.OderRequest;
 import com.example.smilegate.model.Order;
-import com.example.smilegate.services.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.smilegate.services.IOrderService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Tai Nguyen
  */
 @RestController
+@AllArgsConstructor
 @RequestMapping("/order")
 public class OderController {
-    private final OrderService orderService;
-
-    public OderController(OrderService orderService) {
-        this.orderService = orderService;
-    }
-
+    private final IOrderService orderService;
     @PostMapping("/create")
     public void createOder(@RequestBody OderRequest oderRequest){
         orderService.createOrder(oderRequest);

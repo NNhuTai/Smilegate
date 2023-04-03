@@ -1,8 +1,8 @@
 package com.example.smilegate.controller;
 
 import com.example.smilegate.model.Customer;
-import com.example.smilegate.services.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.smilegate.services.ICustomerService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
  * @author Tai Nguyen
  */
 @RestController
+@AllArgsConstructor
 @RequestMapping("/customer")
 public class CustomerController {
-    @Autowired
-    private CustomerService customerService;
+    private final ICustomerService customerService;
 
     @GetMapping("/get/{id}")
     public Customer getCustomer(@PathVariable Long id) {

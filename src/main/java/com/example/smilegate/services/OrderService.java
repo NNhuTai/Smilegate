@@ -6,6 +6,7 @@ import com.example.smilegate.model.Order;
 import com.example.smilegate.repos.GameProductRepo;
 import com.example.smilegate.repos.OrderRepo;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -16,19 +17,17 @@ import java.util.concurrent.atomic.AtomicReference;
  * @author Tai Nguyen
  */
 @Service
-public class OrderService {
+@AllArgsConstructor
+public class OrderService implements IOrderService{
 
     private final OrderRepo orderRepo;
 
 
     private final GameProductRepo gameProductRepo;
 
-    public OrderService(OrderRepo orderRepo, GameProductRepo gameProductRepo) {
-        this.orderRepo = orderRepo;
-        this.gameProductRepo = gameProductRepo;
-    }
 
     @Transactional
+    @Override
     public void createOrder(OderRequest request){
         Set<GameProduct> gameProductList = new HashSet<>(gameProductRepo.findAllById(request.getGameIds()));
 
@@ -45,6 +44,7 @@ public class OrderService {
         }
     }
 
+    @Override
     public void updateListGame(OderRequest request) {
 
         Order order = orderRepo.findById(request.getId()).orElse(null);
@@ -56,11 +56,11 @@ public class OrderService {
             orderRepo.save(order);
         }
     }
-
+    @Override
     public Order getOderById(Long id){
         return orderRepo.findById(id).orElse(null);
     }
-
+    @Override
     public void addGame(OderRequest request) {
         Order order = orderRepo.findById(request.getId()).orElse(null);
         if(order != null) {
@@ -74,7 +74,7 @@ public class OrderService {
             orderRepo.save(order);
         }
     }
-
+    @Override
     public void pay(OderRequest request) {
         Order order = orderRepo.findById(request.getId()).orElse(null);
         if(order != null){

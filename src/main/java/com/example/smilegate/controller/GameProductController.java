@@ -2,9 +2,8 @@ package com.example.smilegate.controller;
 
 import com.example.smilegate.model.GameProduct;
 import com.example.smilegate.model.GameRequest;
-import com.example.smilegate.services.GameProductService;
-import jakarta.websocket.server.PathParam;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.smilegate.services.IGameProductService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,21 +12,20 @@ import java.util.List;
  * @author Tai Nguyen
  */
 @RestController
+@AllArgsConstructor
 @RequestMapping("/game")
 public class GameProductController {
-    @Autowired
-    private GameProductService gameProductService;
+
+    private final IGameProductService gameProductService;
 
     @GetMapping("/listGame")
     public List<GameProduct> getListGame() {
-        List<GameProduct> test = gameProductService.getListGame();
-        return test;
+        return gameProductService.getListGame();
     }
 
     @GetMapping("/game/{id}")
     public GameProduct getListGame(@PathVariable Long id) {
-        GameProduct test = gameProductService.getListGame().get(0);
-        return test;
+        return gameProductService.getListGame().get(0);
     }
 
     @PostMapping("/create")
